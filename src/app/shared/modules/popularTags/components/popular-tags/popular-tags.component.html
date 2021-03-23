@@ -1,0 +1,13 @@
+<div class="sidebar" >
+  <p>Popular Tags</p>
+  <vl-loading *ngIf="isLoading$ | async"></vl-loading>
+  <vl-error-message *ngIf="error$ | async"></vl-error-message>
+  <div class="tag-list" *ngIf="(popularTags$ | async) && !(isLoading$ | async)">
+    <a class="tag-default tag-pill"
+       *ngFor="let popularTag of popularTags$ | async"
+       [routerLink]="['/tags', popularTag]"
+    > {{popularTag}}</a>
+  </div>
+
+  <div *ngIf="((popularTags$ | async) === null) && !(isLoading$ | async)"> No tags are here... yet. </div>
+</div>
